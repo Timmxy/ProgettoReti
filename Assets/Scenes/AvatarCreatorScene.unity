@@ -691,7 +691,7 @@ Transform:
   m_GameObject: {fileID: 189186580}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -350}
+  m_LocalPosition: {x: -75, y: 0, z: -350}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1091,7 +1091,7 @@ MonoBehaviour:
         m_MethodName: SetSkinMaterial
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 771f34072dd7fd148abdfbc688b700d0, type: 2}
+          m_ObjectArgument: {fileID: 2100000, guid: 45247db77f5ae6245960e23ab5b84ccb, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2656,7 +2656,7 @@ Transform:
   m_GameObject: {fileID: 501373385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90, y: -86, z: 0}
+  m_LocalPosition: {x: 0, y: -86, z: 0}
   m_LocalScale: {x: 50, y: 120, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2897,7 +2897,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 547924157}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetBody
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2563610944043974144, guid: b28ae507979a1ef42941be70e2fe7b33, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &547924157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2964,7 +2976,7 @@ Transform:
   m_GameObject: {fileID: 549195916}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90, y: 37, z: 0}
+  m_LocalPosition: {x: 0, y: 37, z: 0}
   m_LocalScale: {x: 50, y: 100, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4002,7 +4014,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 744199140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetHead
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1831885933155769797, guid: 4098f42c12b91e44e81bbb586338dd10, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &744199140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5059,7 +5083,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 879226553}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetBody
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4861590172421606858, guid: 0943681a242531f438801da747101f12, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &879226553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5813,7 +5849,7 @@ MonoBehaviour:
         m_MethodName: SetSkinMaterial
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 5a21cf0bde6075d40946a7daa5ffd618, type: 2}
+          m_ObjectArgument: {fileID: 2100000, guid: 611f26bcb717a0d41bd84d13707bf7e4, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -6323,7 +6359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1288556777}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetBody
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6607382702411747429, guid: 17ddf47e9bd91b541b7042c9f09d410a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1288556777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6814,7 +6862,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1369229843}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetHead
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8799553196973199639, guid: d05ea00fbf5d31f428f55f48160629a6, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1369229843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6935,7 +6995,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1395740169}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetSkinMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: bdd12054b802d1d4b95f1a6a6c60c02a, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1395740169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7230,7 +7302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1430090520}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetBody
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 101041401788362894, guid: 6e56c8019ed4a584088a7c3d8556324c, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1430090520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7932,18 +8016,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gender: 0
-  _head: {fileID: 1954824013}
-  _body: {fileID: 549195916}
+  _head: {fileID: 0}
+  _body: {fileID: 0}
   _bodyPartsMesh:
   - {fileID: 1954824016}
   - {fileID: 549195919}
   - {fileID: 501373388}
-  _defaultHeadM: {fileID: 0}
-  _defaultBodyM: {fileID: 0}
-  _defaultSkinMaterialM: {fileID: 0}
-  _defaultHeadW: {fileID: 0}
-  _defaultBodyW: {fileID: 0}
-  _defaultSkinMaterialW: {fileID: 0}
+  _defaultHeadM: {fileID: 8799553196973199639, guid: d05ea00fbf5d31f428f55f48160629a6, type: 3}
+  _defaultBodyM: {fileID: 5857809934481476080, guid: 2c9be1e72ed54604e8bb4fbf503b25f1, type: 3}
+  _defaultSkinMaterialM: {fileID: 2100000, guid: 45247db77f5ae6245960e23ab5b84ccb, type: 2}
+  _defaultHeadW: {fileID: 1831885933155769797, guid: 4098f42c12b91e44e81bbb586338dd10, type: 3}
+  _defaultBodyW: {fileID: 1080068689501236948, guid: 5a854420811935c4ea65252aac27636e, type: 3}
+  _defaultSkinMaterialW: {fileID: 2100000, guid: 611f26bcb717a0d41bd84d13707bf7e4, type: 2}
 --- !u!1 &1545492234
 GameObject:
   m_ObjectHideFlags: 0
@@ -8104,7 +8188,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1552498408}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetHead
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3106649106044749414, guid: ba1a6f75d7e241543828fc76a22be40f, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1552498408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9420,7 +9516,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1800336407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetBody
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5857809934481476080, guid: 2c9be1e72ed54604e8bb4fbf503b25f1, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1800336407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10619,7 +10727,7 @@ Transform:
   m_GameObject: {fileID: 1954824013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90, y: 121, z: 0}
+  m_LocalPosition: {x: 0, y: 121, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11420,7 +11528,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2052678027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetBody
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1080068689501236948, guid: 5a854420811935c4ea65252aac27636e, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2052678027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11677,7 +11797,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1437022310}
   m_HandleRect: {fileID: 1437022309}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

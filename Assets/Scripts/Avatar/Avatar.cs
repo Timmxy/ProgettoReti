@@ -29,8 +29,8 @@ public class Avatar : MonoBehaviour
 
         if (_gender)
         {
-            _head = _defaultHeadM;
-            _body = _defaultBodyM;
+            SetHead(_defaultHeadM);
+            SetBody(_defaultBodyM);
 
             foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
             {
@@ -39,8 +39,8 @@ public class Avatar : MonoBehaviour
         }
         else
         {
-            _head = _defaultHeadW;
-            _body = _defaultBodyW;
+            SetHead(_defaultHeadW);
+            SetBody(_defaultBodyW);
 
             foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
             {
@@ -51,12 +51,14 @@ public class Avatar : MonoBehaviour
 
     public void SetHead (GameObject head)
     {
-        _head = head;
+        Destroy(_head);
+        _head = Instantiate(head, gameObject.transform);
     }
 
     public void SetBody (GameObject body)
     {
-        _body = body;
+        Destroy(_body);
+        _body = Instantiate(body, gameObject.transform);
     }
 
     public void SetSkinMaterial (Material skinMaterial)
