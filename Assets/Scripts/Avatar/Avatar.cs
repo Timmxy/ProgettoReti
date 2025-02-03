@@ -7,22 +7,22 @@ public class Avatar : MonoBehaviour
     [SerializeField] private GameObject _body;
     [SerializeField] private Mesh _skin;
 
-    public SetGender(bool gender)
+    public void SetGender(bool gender)
     {
         _gender = gender;
     }
 
-    public SetHead (GameObject head)
+    public void SetHead (GameObject head)
     {
         _head = head;
     }
 
-    public SetBody (GameObject body)
+    public void SetBody (GameObject body)
     {
         _body = body;
     }
 
-    public SetSkinColor ()
+    public void SetSkinColor ()
     {
         
     }
