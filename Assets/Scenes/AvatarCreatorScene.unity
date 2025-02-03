@@ -1086,13 +1086,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1521861777}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetSkinMaterial
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 2100000, guid: 771f34072dd7fd148abdfbc688b700d0, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1796,7 +1796,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 334689356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetGender
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &334689356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5795,7 +5807,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1165389426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetSkinMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 5a21cf0bde6075d40946a7daa5ffd618, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1165389426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7910,7 +7934,16 @@ MonoBehaviour:
   _gender: 0
   _head: {fileID: 1954824013}
   _body: {fileID: 549195916}
-  _skin: {fileID: 549195919}
+  _bodyPartsMesh:
+  - {fileID: 1954824016}
+  - {fileID: 549195919}
+  - {fileID: 501373388}
+  _defaultHeadM: {fileID: 0}
+  _defaultBodyM: {fileID: 0}
+  _defaultSkinMaterialM: {fileID: 0}
+  _defaultHeadW: {fileID: 0}
+  _defaultBodyW: {fileID: 0}
+  _defaultSkinMaterialW: {fileID: 0}
 --- !u!1 &1545492234
 GameObject:
   m_ObjectHideFlags: 0
@@ -8757,7 +8790,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1734273600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861779}
+        m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
+        m_MethodName: SetGender
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1734273600
 MonoBehaviour:
   m_ObjectHideFlags: 0
