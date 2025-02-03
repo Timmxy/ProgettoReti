@@ -1085,7 +1085,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 239647215}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1521861777}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &239647215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7856,6 +7868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1521861778}
+  - component: {fileID: 1521861779}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -7882,6 +7895,22 @@ Transform:
   - {fileID: 501373386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1521861779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521861777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea74b757e491ec84dbb3488df6c1d84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gender: 0
+  _head: {fileID: 1954824013}
+  _body: {fileID: 549195916}
+  _skin: {fileID: 549195919}
 --- !u!1 &1545492234
 GameObject:
   m_ObjectHideFlags: 0
