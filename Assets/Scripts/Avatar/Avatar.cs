@@ -2,14 +2,27 @@ using UnityEngine;
 
 public class Avatar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private bool _gender;
+    [SerializeField] private GameObject _head;
+    [SerializeField] private GameObject _body;
+    [SerializeField] private Mesh _skin;
+
+    public SetGender(bool gender)
     {
-        
+        _gender = gender;
     }
 
-    // Update is called once per frame
-    void Update()
+    public SetHead (GameObject head)
+    {
+        _head = head;
+    }
+
+    public SetBody (GameObject body)
+    {
+        _body = body;
+    }
+
+    public SetSkinColor ()
     {
         
     }
