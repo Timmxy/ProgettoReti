@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Avatar : MonoBehaviour
@@ -5,25 +6,25 @@ public class Avatar : MonoBehaviour
     [SerializeField] private bool _gender;
     [SerializeField] private GameObject _head;
     [SerializeField] private GameObject _body;
-    [SerializeField] private Mesh _skin;
+    [SerializeField] private MeshRenderer _skin;
 
-    public SetGender(bool gender)
+    public void SetGender(bool gender)
     {
         _gender = gender;
     }
 
-    public SetHead (GameObject head)
+    public void SetHead (GameObject head)
     {
         _head = head;
     }
 
-    public SetBody (GameObject body)
+    public void SetBody (GameObject body)
     {
         _body = body;
     }
 
-    public SetSkinColor ()
+    public void SetSkinColor (List<Color> color)
     {
-        
+        _skin.GetComponent<Mesh>().SetColors(color);
     }
 }
