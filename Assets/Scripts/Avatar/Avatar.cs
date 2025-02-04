@@ -6,16 +6,20 @@ public class Avatar : MonoBehaviour
     [SerializeField] private bool _gender;
     [SerializeField] private GameObject _head;
     [SerializeField] private GameObject _body;
+    [SerializeField] private GameObject _legs;
     [SerializeField] private MeshRenderer[] _bodyPartsMesh;
     
     [Header("Default Man Preset")]
     [SerializeField] private GameObject _defaultHeadM;
     [SerializeField] private GameObject _defaultBodyM;
+    [SerializeField] private GameObject _defaultLegsM;
     [SerializeField] private Material _defaultSkinMaterialM;
+    
     
     [Header("Default Woman Preset")]
     [SerializeField] private GameObject _defaultHeadW;
     [SerializeField] private GameObject _defaultBodyW;
+    [SerializeField] private GameObject _defaultLegsW;
     [SerializeField] private Material _defaultSkinMaterialW;
 
     private void Start()
@@ -31,6 +35,7 @@ public class Avatar : MonoBehaviour
         {
             SetHead(_defaultHeadM);
             SetBody(_defaultBodyM);
+            SetLegs(_defaultLegsM);
 
             foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
             {
@@ -41,7 +46,8 @@ public class Avatar : MonoBehaviour
         {
             SetHead(_defaultHeadW);
             SetBody(_defaultBodyW);
-
+            SetLegs(_defaultLegsW);
+            
             foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
             {
                 bodyPartMesh.material = _defaultSkinMaterialW;
@@ -59,6 +65,12 @@ public class Avatar : MonoBehaviour
     {
         Destroy(_body);
         _body = Instantiate(body, gameObject.transform);
+    }
+    
+    public void SetLegs (GameObject legs)
+    {
+        Destroy(_legs);
+        _legs = Instantiate(legs, gameObject.transform);
     }
 
     public void SetSkinMaterial (Material skinMaterial)
