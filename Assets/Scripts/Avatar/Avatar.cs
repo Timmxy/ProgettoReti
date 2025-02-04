@@ -1,13 +1,18 @@
+using System;
 using UnityEngine;
 
 public class Avatar : MonoBehaviour
 {
     [Header("Avatar Settings")]
-    [SerializeField] private bool _gender;
+    [SerializeField] private string _gender;
     [SerializeField] private GameObject _head;
     [SerializeField] private GameObject _body;
     [SerializeField] private GameObject _legs;
+    [SerializeField] private GameObject _skin;
+    
     [SerializeField] private MeshRenderer[] _bodyPartsMesh;
+
+    [SerializeField] private GameObject _instantiateParent;
     
     [Header("Default Man Preset")]
     [SerializeField] private GameObject _defaultHeadM;
@@ -24,14 +29,14 @@ public class Avatar : MonoBehaviour
 
     private void Start()
     {
-        SetGender(true);
+        SetGender("01");
     }
     
-    public void SetGender(bool gender)
+    public void SetGender(string gender)
     {
         _gender = gender;
 
-        if (_gender)
+        if (_gender.Equals("01"))
         {
             SetHead(_defaultHeadM);
             SetBody(_defaultBodyM);
@@ -42,7 +47,7 @@ public class Avatar : MonoBehaviour
                 bodyPartMesh.material = _defaultSkinMaterialM;
             }
         }
-        else
+        else if (_gender.Equals("02"))
         {
             SetHead(_defaultHeadW);
             SetBody(_defaultBodyW);
@@ -73,11 +78,39 @@ public class Avatar : MonoBehaviour
         _legs = Instantiate(legs, gameObject.transform);
     }
 
-    public void SetSkinMaterial (Material skinMaterial)
+    public void SetSkinMaterial (GameObject skin)
     {
+        Destroy(_skin);
+        this._skin = Instantiate(skin, this._instantiateParent.transform);
         foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
         {
-            bodyPartMesh.material = skinMaterial;
+            bodyPartMesh.material = _skin.GetComponent<MeshRenderer>().material;
         }
+    }
+
+    public string GetGenderId()
+    {
+        int genderHeader = (int)AvatarCategories.Gender;
+        return genderHeader.ToString("D2") + this._gender.ToString();
+    }
+
+    public string GetHeadId()
+    {
+        return this._head.GetComponent<PrefabTag>().GetId();
+    }
+
+    public string GetBodyId()
+    {
+        return this._body.GetComponent<PrefabTag>().GetId();
+    }
+
+    public string GetLegsId()
+    {
+        return this._legs.GetComponent<PrefabTag>().GetId();
+    }
+
+    public string GetSkinId()
+    {
+        return this._skin.GetComponent<PrefabTag>().GetId();
     }
 }
