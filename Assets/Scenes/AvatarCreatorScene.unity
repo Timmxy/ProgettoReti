@@ -1947,13 +1947,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1521861779}
         m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
         m_MethodName: SetGender
-        m_Mode: 6
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 02
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &334689356
@@ -3512,7 +3512,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -337.03, y: 245.76}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &593032915
 MonoBehaviour:
@@ -5178,7 +5178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &825077487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8109,9 +8109,9 @@ RectTransform:
   - {fileID: 1395740167}
   m_Father: {fileID: 593032914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -61.44}
   m_SizeDelta: {x: 100, y: 122.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1430090517
@@ -8856,9 +8856,9 @@ RectTransform:
   - {fileID: 1909654895}
   m_Father: {fileID: 593032914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -184.31999}
   m_SizeDelta: {x: 100, y: 122.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1521861777
@@ -8922,11 +8922,11 @@ MonoBehaviour:
   _defaultHeadM: {fileID: 8799553196973199639, guid: d05ea00fbf5d31f428f55f48160629a6, type: 3}
   _defaultBodyM: {fileID: 5857809934481476080, guid: 2c9be1e72ed54604e8bb4fbf503b25f1, type: 3}
   _defaultLegsM: {fileID: 3396232523904702569, guid: d83c5322d2dbfd64982d7e6ff83ad5ba, type: 3}
-  _defaultSkinMaterialM: {fileID: 2100000, guid: bdd12054b802d1d4b95f1a6a6c60c02a, type: 2}
+  _defaultSkinMaterialM: {fileID: 8508480724944950324, guid: 3eb331155793bbb40af214650a92a92f, type: 3}
   _defaultHeadW: {fileID: 1831885933155769797, guid: 4098f42c12b91e44e81bbb586338dd10, type: 3}
   _defaultBodyW: {fileID: 1080068689501236948, guid: 5a854420811935c4ea65252aac27636e, type: 3}
   _defaultLegsW: {fileID: 7631368479297748442, guid: acfae0c897551d8419c9b6f0db3874f3, type: 3}
-  _defaultSkinMaterialW: {fileID: 2100000, guid: bdd12054b802d1d4b95f1a6a6c60c02a, type: 2}
+  _defaultSkinMaterialW: {fileID: 3576659419408879568, guid: 559ca911cad73694f846061a51dd1260, type: 3}
 --- !u!1 &1545492234
 GameObject:
   m_ObjectHideFlags: 0
@@ -9209,7 +9209,7 @@ RectTransform:
   m_Father: {fileID: 1201594020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9967,13 +9967,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1521861779}
         m_TargetAssemblyTypeName: Avatar, Assembly-CSharp
         m_MethodName: SetGender
-        m_Mode: 6
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 01
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1734273600
@@ -10182,9 +10182,9 @@ RectTransform:
   - {fileID: 334689354}
   m_Father: {fileID: 1815626885}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -61.44}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 122.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1771290258
@@ -10866,7 +10866,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -337.03, y: 122.88}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1815626886
 MonoBehaviour:
@@ -11019,9 +11019,9 @@ RectTransform:
   m_Father: {fileID: 2100783259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1839753234
 MonoBehaviour:
@@ -11091,7 +11091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1844556372
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11261,9 +11261,9 @@ RectTransform:
   m_Father: {fileID: 997522715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1882762538
 MonoBehaviour:
@@ -12220,7 +12220,7 @@ RectTransform:
   m_Father: {fileID: 1605542183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -18,14 +18,14 @@ public class Avatar : MonoBehaviour
     [SerializeField] private GameObject _defaultHeadM;
     [SerializeField] private GameObject _defaultBodyM;
     [SerializeField] private GameObject _defaultLegsM;
-    [SerializeField] private Material _defaultSkinMaterialM;
+    [SerializeField] private GameObject _defaultSkinMaterialM;
     
     
     [Header("Default Woman Preset")]
     [SerializeField] private GameObject _defaultHeadW;
     [SerializeField] private GameObject _defaultBodyW;
     [SerializeField] private GameObject _defaultLegsW;
-    [SerializeField] private Material _defaultSkinMaterialW;
+    [SerializeField] private GameObject _defaultSkinMaterialW;
 
     private void Start()
     {
@@ -41,22 +41,14 @@ public class Avatar : MonoBehaviour
             SetHead(_defaultHeadM);
             SetBody(_defaultBodyM);
             SetLegs(_defaultLegsM);
-
-            foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
-            {
-                bodyPartMesh.material = _defaultSkinMaterialM;
-            }
+            SetSkinMaterial(_defaultSkinMaterialM);
         }
         else if (_gender.Equals("02"))
         {
             SetHead(_defaultHeadW);
             SetBody(_defaultBodyW);
             SetLegs(_defaultLegsW);
-            
-            foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
-            {
-                bodyPartMesh.material = _defaultSkinMaterialW;
-            }
+            SetSkinMaterial(_defaultSkinMaterialW);
         }
     }
 
