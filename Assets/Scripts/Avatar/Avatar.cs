@@ -29,10 +29,10 @@ public class Avatar : MonoBehaviour
 
     private void Start()
     {
-        SetGender("01");
+        SetDefaultAvatar("01");
     }
-    
-    public void SetGender(string gender)
+
+    public void SetDefaultAvatar(string gender)
     {
         _gender = gender;
 
@@ -60,6 +60,11 @@ public class Avatar : MonoBehaviour
         }
     }
 
+    public void SetGender(string gender)
+    {
+        this._gender = gender;
+    }
+    
     public void SetHead (GameObject head)
     {
         Destroy(_head);
