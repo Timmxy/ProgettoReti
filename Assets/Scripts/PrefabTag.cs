@@ -11,6 +11,11 @@ public class PrefabTag : MonoBehaviour
         int headerInt = (int)this._headerId;
         return headerInt.ToString("D2") + this._trailerId;
     }
+
+    public string GetTrailerId()
+    {
+        return this._trailerId;
+    }
 }
 
 public enum AvatarCategories

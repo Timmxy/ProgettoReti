@@ -1,44 +1,44 @@
 using System;
 using UnityEngine;
-//using System.Text.Json;
+using System.IO;
+using TMPro;
 
 public class SaveAvatar : MonoBehaviour
 {
-    private string _id;
-
+    [SerializeField] private TMP_Text _idText;
     public void GenerateStringId(GameObject avatar)
     {
-        this._id = avatar.GetComponent<Avatar>().GetGenderId() +
+        string id = avatar.GetComponent<Avatar>().GetGenderId() +
                    avatar.GetComponent<Avatar>().GetHeadId() +
                    avatar.GetComponent<Avatar>().GetBodyId() +
                    avatar.GetComponent<Avatar>().GetLegsId() +
                    avatar.GetComponent<Avatar>().GetSkinId();
         // aggiungere System.GUID all'ID
+        string guid = Guid.NewGuid().ToString();
         
         // stampa sul Canvas l'ID per copiare
+        this._idText.text = id;
         
         // salvo id e guid in un file json
-        
+        string path = "C:/Users/j.derosa/Documents/TEST";
+        SaveJson(id, guid, path);
         
         // DEBUG
-        Debug.Log("ID SALVATO: "+this._id);
+        Debug.Log("ID SALVATO: " + id);
     }
-    /*
+    
     // Metodo per serializzare e salvare il JSON in un percorso specifico
-    public static void SaveJson(string id, string guid, string folderPath)
+    private static void SaveJson(string setId, string setGuid, string folderPath)
     {
         // Crea l'oggetto da serializzare
         DataModel data = new DataModel
         {
-            Id = id,
-            Guid = guid
+            id = setId,
+            guid = setGuid
         };
 
-        // Opzioni per una formattazione leggibile
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        // Serializza l'oggetto in formato JSON
-        string jsonString = JsonSerializer.Serialize(data, options);
+        // Serializza l'oggetto in formato JSON usando JsonUtility
+        string jsonString = JsonUtility.ToJson(data, true); // true = JSON formattato (pretty print)
 
         // Verifica se la cartella esiste, altrimenti la crea
         if (!Directory.Exists(folderPath))
@@ -52,14 +52,14 @@ public class SaveAvatar : MonoBehaviour
         // Salva il file JSON nel percorso specificato
         File.WriteAllText(filePath, jsonString);
 
-        Console.WriteLine($"Dati JSON salvati con successo in: {filePath}");
-    }*/
+        Debug.Log($"Dati JSON salvati con successo in: {filePath}");
+    }
 } 
 
 public class DataModel
 {
-    public string Id { get; set; }
-    public string Guid { get; set; }
+    public string id;
+    public string guid;
 }
 
 
