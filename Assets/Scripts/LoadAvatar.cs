@@ -7,33 +7,41 @@ using UnityEngine.Rendering.Universal.Internal;
 
 public class LoadAvatar : MonoBehaviour
 {
-    //[SerializeField] private InputField _input;
-    [SerializeField] private Avatar _avatar;
+    [SerializeField] private TMPro.TMP_InputField _input;   // textfield da dove prendo id da caricare
+    [SerializeField] private Avatar _avatar;    // riferimento all'avatar in scena
 
-    private const int NumCategories = 5;
+    private const int NumCategories = 5;    // numero di categorie customizzabili
     
     public void LoadJson()
     {
-        string filePath = "C:/Users/j.derosa/Documents/TEST/data.json";
-        string[] codes = new string[LoadAvatar.NumCategories];
+        string filePath = "C:/Users/j.derosa/Documents/TEST/data.json"; // path del json
+        string id = null;   // id asset dell'avatar
         
-        // Verifica se il file esiste
+        // verifica se il file esiste
         if (File.Exists(filePath))
         {
             try
             {
-                // Legge il contenuto del file JSON
+                // legge il contenuto del file JSON
                 string jsonString = File.ReadAllText(filePath);
 
-                // Deserializza il JSON in un oggetto DataModel
-                DataModel data = JsonUtility.FromJson<DataModel>(jsonString);
+                // deserializza il JSON in un array di oggetti DataModel
+                AvatarList data = JsonUtility.FromJson<AvatarList>(jsonString);
 
                 // DEBUG
                 Debug.Log("Dati JSON caricati con successo!");
 
                 // estrae id dal json deserializzato
                 // TODO: aggiungere anche GUID
-                string id = data.id;
+                foreach (DataModel avatarInfo in data.avatars)
+                {
+                    // se è l'id che cerco
+                    if (avatarInfo.id.Equals(_input.text))
+                    {
+                       // carico gli asset corrispondenti
+                       id = avatarInfo.id;
+                    }
+                }
 
                 // controllo lunghezza stringa id
                 /*if (id.Length != 10)
