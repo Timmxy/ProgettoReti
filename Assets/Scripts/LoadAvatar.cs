@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
@@ -9,13 +10,16 @@ public class LoadAvatar : MonoBehaviour
 {
     [SerializeField] private TMPro.TMP_InputField _input;   // textfield da dove prendo id da caricare
     [SerializeField] private Avatar _avatar;    // riferimento all'avatar in scena
-
+    [SerializeField] private GameObject _testSprite;
+    
     private const int NumCategories = 5;    // numero di categorie customizzabili
+    
     
     public void LoadJson()
     {
         string filePath = "C:/Users/j.derosa/Documents/TEST/data.json"; // path del json
         string id = null;   // id asset dell'avatar
+        
         
         // verifica se il file esiste
         if (File.Exists(filePath))
@@ -30,6 +34,7 @@ public class LoadAvatar : MonoBehaviour
 
                 // DEBUG
                 Debug.Log("Dati JSON caricati con successo!");
+                
 
                 // estrae id dal json deserializzato
                 // TODO: aggiungere anche GUID
@@ -40,6 +45,7 @@ public class LoadAvatar : MonoBehaviour
                     {
                        // carico gli asset corrispondenti
                        id = avatarInfo.id;
+                       _testSprite.GetComponent<Image>().sprite = Base64ToSprite(avatarInfo.image);
                     }
                 }
 
@@ -116,5 +122,21 @@ public class LoadAvatar : MonoBehaviour
         }
         Debug.Log("Se sono qui vuol dire che qualcosa e' andato storto.");
         return null;
+    }
+    
+    public Sprite Base64ToSprite(string base64)
+    {
+        byte[] imageBytes = Convert.FromBase64String(base64);
+        Texture2D texture = new Texture2D(2, 2);
+        if (texture.LoadImage(imageBytes))
+        {
+            return TextureToSprite(texture);
+        }
+        return null;
+    }
+
+    private Sprite TextureToSprite(Texture2D texture)
+    {
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
     }
 }
