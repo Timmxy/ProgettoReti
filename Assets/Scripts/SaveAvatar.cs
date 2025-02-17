@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using System.Text;
+using UnityEngine.Networking;
 
 public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private TMP_Text _idText;
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
     
-    
 
     private int _resolutionWidth = 64;
     private int _resolutionHeight = 64;
     private string _imageBase64;
+
+    private string url = "http://5.157.103.206:5000";
     
     public void GenerateStringId(GameObject avatar)
     {
@@ -46,7 +49,7 @@ public class SaveAvatar : MonoBehaviour
     
     
     // Metodo per aggiungere un nuovo avatar al JSON
-    public static void SaveJson(string setId, string setGuid, string setImage, string folderPath)
+    public void SaveJson(string setId, string setGuid, string setImage, string folderPath)
     {
         //nome del file json
         string fileName = "playerData.json";
@@ -69,7 +72,7 @@ public class SaveAvatar : MonoBehaviour
         }
 
         // Aggiungi il nuovo avatar alla lista
-        avatarList.avatars.Add(new DataModel { id = setId, guid = setGuid, image = setImage});
+        avatarList.avatars.Add(new DataModel {IdAvatar = setId, GUID = setGuid, ImagePath = "123"});
         Debug.Log( "avatarList: "+ avatarList.ToString());
 
 
@@ -86,8 +89,36 @@ public class SaveAvatar : MonoBehaviour
         File.WriteAllText(filePath, jsonString);
         
         Debug.Log($"Nuovo avatar salvato in: {filePath}");
+
+        // faccio partire la coroutine per salvare json nel DB del server
+        StartCoroutine(UpdateDatabase(jsonString));
     }
-    
+
+
+    // Coroutine per salvare contenuti json nel database del server
+    private IEnumerator UpdateDatabase(string jsonData)
+    {
+        byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
+
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/set"), "POST"))
+        {
+            request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Dati inviati con successo! Risposta: " + request.downloadHandler.text);
+            }
+            else
+            {
+                Debug.LogError("Errore nell'invio: " + request.error);
+            }
+        }
+    }
+
     public void TakeScreenshot()
     {
         StartCoroutine(CaptureScreenshot());
@@ -126,9 +157,9 @@ public class SaveAvatar : MonoBehaviour
 [System.Serializable]
 public class DataModel
 {
-    public string id;
-    public string guid;
-    public string image;
+    public string IdAvatar;
+    public string GUID;
+    public string ImagePath;
 
 }
 

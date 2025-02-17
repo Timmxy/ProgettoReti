@@ -5,16 +5,21 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine.Rendering.Universal.Internal;
+using System.Text;
+using UnityEngine.Networking;
+using System.Collections;
 
 public class LoadAvatar : MonoBehaviour
 { 
-    private Avatar _avatar;    // riferimento all'avatar in scena (script)
+    private Avatar _avatar;     // riferimento all'avatar in scena (script)
     private string _avatarId;   // codice avatar
+
 
     private void OnEnable()
     {
         _avatar = GameObject.FindGameObjectWithTag("Avatar").GetComponent<Avatar>();
     }
+
 
     public void LoadAvatarSettings()
     {
