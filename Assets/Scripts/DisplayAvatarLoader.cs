@@ -7,11 +7,14 @@ public class DisplayAvatarLoader : MonoBehaviour
 {
     [SerializeField] private GameObject _button;
     [SerializeField] private Transform _contentTransform;
-
-    private const string FilePath = "C:/Users/j.derosa/Documents/TEST/data.json"; // path del json
     
     public void LoadJson()
     {
+        //nome del file 
+        string nomeFile = "playerData.json";
+        //percoso generico del file
+        string FilePath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyFolder"), nomeFile);
+
         // verifica se il file esiste
         if (File.Exists(FilePath))
         {

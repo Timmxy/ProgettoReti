@@ -33,9 +33,11 @@ public class SaveAvatar : MonoBehaviour
         
         // stampa sul Canvas l'ID per copiare
         this._idText.text = id;
-        
-        // salvo id e guid in un file json
-        string path = "C:/Users/j.derosa/Documents/TEST";
+
+        // salvo id e guid in un file json, percorso generico
+        //string path = Application.persistentDataPath;
+        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyFolder");
+        Debug.Log("Path: " + path);
         SaveJson(id, guid, _imageBase64, path);
         
         // DEBUG
@@ -46,7 +48,12 @@ public class SaveAvatar : MonoBehaviour
     // Metodo per aggiungere un nuovo avatar al JSON
     public static void SaveJson(string setId, string setGuid, string setImage, string folderPath)
     {
-        string filePath = "C:/Users/j.derosa/Documents/TEST/data.json";
+        //nome del file json
+        string fileName = "playerData.json";
+
+        //percorso generico combinato al nome del file
+        string filePath = Path.Combine(folderPath, fileName);
+        Debug.Log("filePath in SavaJson: " + filePath);
 
         // Lista degli avatar esistenti
         AvatarList avatarList = new AvatarList();
