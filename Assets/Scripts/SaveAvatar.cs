@@ -4,23 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
-<<<<<<< HEAD
-using Newtonsoft.Json;
-=======
 using System.Text;
 using UnityEngine.Networking;
->>>>>>> af9a8978287e622ecfbe3bf6512654b893db9f02
+using Newtonsoft.Json;
 
 public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private TMP_Text _idText;
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
-<<<<<<< HEAD
-   
-=======
     
 
->>>>>>> af9a8978287e622ecfbe3bf6512654b893db9f02
     private int _resolutionWidth = 64;
     private int _resolutionHeight = 64;
     private string _imageBase64;
@@ -87,7 +80,7 @@ public class SaveAvatar : MonoBehaviour
             {
                 avatarList = JsonUtility.FromJson<AvatarList>(existingJson) ?? new AvatarList();
             }
-            //controllo se il file è in sola lettura
+            //controllo se il file ï¿½ in sola lettura
             FileInfo fileInfo = new FileInfo(filePath);
             if (fileInfo.IsReadOnly)
             {
