@@ -16,6 +16,8 @@ public class SaveAvatar : MonoBehaviour
     private int _resolutionWidth = 64;
     private int _resolutionHeight = 64;
     private string _imageBase64;
+    private string _imagePath;
+    private bool _waitUploadImage;
 
     
     public void GenerateStringId(GameObject avatar)
@@ -37,13 +39,21 @@ public class SaveAvatar : MonoBehaviour
         // salvo id e guid in un file json, percorso generico del folder path
         string path = Application.persistentDataPath;
         Debug.Log("Path: " + path);
-        SaveJson(id, guid, _imageBase64, path);
+        StartCoroutine(SaveJson(id, guid, _imageBase64, path));
     }
     
     
     // Metodo per aggiungere un nuovo avatar al JSON
-    public void SaveJson(string setId, string setGuid, string setImage, string folderPath)
+    public IEnumerator SaveJson(string setId, string setGuid, string setImage, string folderPath)
     {
+        ImageJson imageJson = new ImageJson { ImageBase64 = _imageBase64 };
+        string jsonString = JsonConvert.SerializeObject(imageJson, Formatting.Indented);
+        Debug.Log(jsonString);
+        StartCoroutine(UpdateImage(jsonString));
+
+        yield return new WaitUntil (() => _waitUploadImage);
+
+        _waitUploadImage = false;
         //nome del file json
         string fileName = "playerData.json";
 
@@ -85,10 +95,10 @@ public class SaveAvatar : MonoBehaviour
 
             // Aggiungi il nuovo avatar alla lista
             avatarList.avatars.Add(new DataModel { IdAvatar = setId, GUID = setGuid, ImagePath = _imageBase64 });
-            avatarListDatabase.avatars.Add(new DataModel { IdAvatar = setId, GUID = setGuid, ImagePath = _imageBase64 });
+            avatarListDatabase.avatars.Add(new DataModel { IdAvatar = setId, GUID = setGuid, ImagePath = _imagePath });
 
             // Serializza il JSON con Newtonsoft.Json (serve quando hai molti caratteri, con JsonUtility troncava)
-            string jsonString = JsonConvert.SerializeObject(avatarList, Formatting.Indented);
+            jsonString = JsonConvert.SerializeObject(avatarList, Formatting.Indented);
             string jsonAvatarString = JsonConvert.SerializeObject(avatarListDatabase, Formatting.Indented);
 
             // Scrivi il JSON nel file
@@ -110,9 +120,10 @@ public class SaveAvatar : MonoBehaviour
     // Coroutine per salvare contenuti json nel database del server
     private IEnumerator UpdateDatabase(string jsonData)
     {
+        yield return null;
         byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
 
-        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/insert_avatars.php"), "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -123,6 +134,31 @@ public class SaveAvatar : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
                 Debug.Log("Dati inviati con successo al DB! Risposta: " + request.downloadHandler.text);
+            }
+            else
+            {
+                Debug.LogError("Errore nell'invio al DB: " + request.error);
+            }
+        }
+    }
+
+    private IEnumerator UpdateImage(string _imageBase64)
+    {
+        byte[] jsonToSend = Encoding.UTF8.GetBytes(_imageBase64);
+
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/upload_image.php"), "POST"))
+        {
+            request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Dati inviati con successo al DB! Risposta: " + request.downloadHandler.text);
+                _imagePath = request.downloadHandler.text;
+                _waitUploadImage = true;
             }
             else
             {
@@ -180,8 +216,13 @@ public class AvatarList
     public List<DataModel> avatars = new List<DataModel>();
 }
 
+[System.Serializable]
+public class ImageJson
+{
+    public string ImageBase64;
+}
+
 public class ExistingIdException : Exception
 {
 
 }
-

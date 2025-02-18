@@ -6777,9 +6777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbd1fb12b531a64cab7bbe2359a3401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idText: {fileID: 1808919590}
   _screenShotCamera: {fileID: 1722979040}
-  url: http://192.168.0.197/insert_avatars.php
+  url: http://192.168.0.197
 --- !u!1 &1120949380
 GameObject:
   m_ObjectHideFlags: 0
