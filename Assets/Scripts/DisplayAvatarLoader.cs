@@ -13,7 +13,7 @@ public class DisplayAvatarLoader : MonoBehaviour
         //nome del file 
         string nomeFile = "playerData.json";
         //percoso generico del file
-        string FilePath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyFolder"), nomeFile);
+        string FilePath = Path.Combine(Application.persistentDataPath, nomeFile);
 
         // verifica se il file esiste
         if (File.Exists(FilePath))

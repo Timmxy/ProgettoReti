@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using Newtonsoft.Json;
 
 public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private TMP_Text _idText;
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
-    
-    
-
+   
     private int _resolutionWidth = 64;
     private int _resolutionHeight = 64;
     private string _imageBase64;
@@ -20,23 +19,23 @@ public class SaveAvatar : MonoBehaviour
     {
         // esegue screen dell'avatar da salvare
         TakeScreenshot();
-        
+        Avatar avatarComponent = avatar.GetComponent<Avatar>();
         // genera stringa riconoscitiva dell'avatar
-        string id = avatar.GetComponent<Avatar>().GetGenderId() +
-                    avatar.GetComponent<Avatar>().GetHeadId() +
-                    avatar.GetComponent<Avatar>().GetBodyId() +
-                    avatar.GetComponent<Avatar>().GetLegsId() +
-                    avatar.GetComponent<Avatar>().GetSkinId();
-        
+        string id = avatarComponent.GetGenderId() + 
+                    avatarComponent.GetHeadId() +
+                    avatarComponent.GetBodyId() +
+                    avatarComponent.GetLegsId() +
+                    avatarComponent.GetSkinId();
+
         // aggiungere System.GUID all'ID
         string guid = Guid.NewGuid().ToString();
         
         // stampa sul Canvas l'ID per copiare
         this._idText.text = id;
 
-        // salvo id e guid in un file json, percorso generico
-        //string path = Application.persistentDataPath;
-        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyFolder");
+        // salvo id e guid in un file json, percorso generico del folder path
+        string path = Application.persistentDataPath;
+        //string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyFolder");
         Debug.Log("Path: " + path);
         SaveJson(id, guid, _imageBase64, path);
         
@@ -51,39 +50,51 @@ public class SaveAvatar : MonoBehaviour
         //nome del file json
         string fileName = "playerData.json";
 
+        // Verifica se la cartella esiste, altrimenti la crea
+        /*
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+            Debug.Log(folderPath);
+        }
+        */
+
         //percorso generico combinato al nome del file
         string filePath = Path.Combine(folderPath, fileName);
-        Debug.Log("filePath in SavaJson: " + filePath);
+        Debug.Log("filePath (in SavaJson): " + filePath);
 
         // Lista degli avatar esistenti
         AvatarList avatarList = new AvatarList();
         
         // Se il file esiste, leggilo e deserializzalo
         if (File.Exists(filePath))
-        {
+            
+        {  
             string existingJson = File.ReadAllText(filePath);
             if (!string.IsNullOrWhiteSpace(existingJson)) // Evita di deserializzare un file vuoto
             {
                 avatarList = JsonUtility.FromJson<AvatarList>(existingJson) ?? new AvatarList();
             }
+            //controllo se il file è in sola lettura
+            FileInfo fileInfo = new FileInfo(filePath);
+            if (fileInfo.IsReadOnly)
+            {
+                fileInfo.IsReadOnly = false;
+            }
         }
+
+        //StreamWriter sW = File.CreateText(filePath);
 
         // Aggiungi il nuovo avatar alla lista
         avatarList.avatars.Add(new DataModel { id = setId, guid = setGuid, image = setImage});
         Debug.Log( "avatarList: "+ avatarList.ToString());
 
+        // Serializza il JSON con Newtonsoft.Json (serve quando hai molti caratteri, con JsonUtility troncava)
+        string jsonString = JsonConvert.SerializeObject(avatarList, Formatting.Indented);
 
-        // Serializza l'intera lista in JSON
-        string jsonString = JsonUtility.ToJson(avatarList, true);
-        
-        // Verifica se la cartella esiste, altrimenti la crea
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
-        
         // Scrivi il JSON nel file
         File.WriteAllText(filePath, jsonString);
+        //sW.Write(jsonString);
         
         Debug.Log($"Nuovo avatar salvato in: {filePath}");
     }
