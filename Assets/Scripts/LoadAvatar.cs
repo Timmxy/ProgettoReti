@@ -1,13 +1,5 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
-using System.IO;
 using UnityEditor;
-using UnityEditor.Rendering;
-using UnityEngine.Rendering.Universal.Internal;
-using System.Text;
-using UnityEngine.Networking;
-using System.Collections;
 
 public class LoadAvatar : MonoBehaviour
 { 

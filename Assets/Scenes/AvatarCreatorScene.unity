@@ -762,6 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 821430616490911493, guid: 402e25e63bae8bb4e88b31c6e64ecd4b, type: 3}
   _contentTransform: {fileID: 301639544}
+  url: http://5.157.103.206:5000
 --- !u!1 &179195499
 GameObject:
   m_ObjectHideFlags: 0
@@ -6778,6 +6779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _idText: {fileID: 1808919590}
   _screenShotCamera: {fileID: 1722979040}
+  url: http://192.168.0.197/insert_avatars.php
 --- !u!1 &1120949380
 GameObject:
   m_ObjectHideFlags: 0

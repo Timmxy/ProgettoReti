@@ -9,8 +9,7 @@ public class DisplayAvatarLoader : MonoBehaviour
 {
     [SerializeField] private GameObject _button;
     [SerializeField] private Transform _contentTransform;
-
-    private string url = "http://5.157.103.206:5000";
+    [SerializeField] private string url;
 
     public void LoadJson()
     {
@@ -67,7 +66,7 @@ public class DisplayAvatarLoader : MonoBehaviour
 
     IEnumerator GetJsonFromDatabase()
     {
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/get"), "GET"))
+        using (UnityWebRequest request = new UnityWebRequest(url, "GET"))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");

@@ -12,13 +12,12 @@ public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private TMP_Text _idText;
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
+    [SerializeField] private string url;
     
-
     private int _resolutionWidth = 64;
     private int _resolutionHeight = 64;
     private string _imageBase64;
 
-    private string url = "http://5.157.103.206:5000";
     
     public void GenerateStringId(GameObject avatar)
     {
@@ -73,7 +72,6 @@ public class SaveAvatar : MonoBehaviour
         
         // Se il file esiste, leggilo e deserializzalo
         if (File.Exists(filePath))
-            
         {  
             string existingJson = File.ReadAllText(filePath);
             if (!string.IsNullOrWhiteSpace(existingJson)) // Evita di deserializzare un file vuoto
@@ -91,7 +89,7 @@ public class SaveAvatar : MonoBehaviour
         //StreamWriter sW = File.CreateText(filePath);
 
         // Aggiungi il nuovo avatar alla lista
-        avatarList.avatars.Add(new DataModel {IdAvatar = setId, GUID = setGuid, ImagePath = "123"});
+        avatarList.avatars.Add(new DataModel {IdAvatar = setId, GUID = setGuid, ImagePath = _imageBase64});
         Debug.Log( "avatarList: "+ avatarList.ToString());
 
         // Serializza il JSON con Newtonsoft.Json (serve quando hai molti caratteri, con JsonUtility troncava)
@@ -113,7 +111,7 @@ public class SaveAvatar : MonoBehaviour
     {
         byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
 
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/set"), "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
             request.downloadHandler = new DownloadHandlerBuffer();
