@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 
 public class SaveAvatar : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _idText;
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
     [SerializeField] private string url;
     
@@ -23,6 +22,7 @@ public class SaveAvatar : MonoBehaviour
     {
         // esegue screen dell'avatar da salvare
         TakeScreenshot();
+
         Avatar avatarComponent = avatar.GetComponent<Avatar>();
         // genera stringa riconoscitiva dell'avatar
         string id = avatarComponent.GetGenderId() + 
@@ -33,18 +33,11 @@ public class SaveAvatar : MonoBehaviour
 
         // aggiungere System.GUID all'ID
         string guid = Guid.NewGuid().ToString();
-        
-        // stampa sul Canvas l'ID per copiare
-        this._idText.text = id;
 
         // salvo id e guid in un file json, percorso generico del folder path
         string path = Application.persistentDataPath;
-        //string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyFolder");
         Debug.Log("Path: " + path);
         SaveJson(id, guid, _imageBase64, path);
-        
-        // DEBUG
-        Debug.Log("ID SALVATO: " + id);
     }
     
     
@@ -54,21 +47,14 @@ public class SaveAvatar : MonoBehaviour
         //nome del file json
         string fileName = "playerData.json";
 
-        // Verifica se la cartella esiste, altrimenti la crea
-        /*
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-            Debug.Log(folderPath);
-        }
-        */
-
         //percorso generico combinato al nome del file
         string filePath = Path.Combine(folderPath, fileName);
         Debug.Log("filePath (in SavaJson): " + filePath);
 
         // Lista degli avatar esistenti
         AvatarList avatarList = new AvatarList();
+        // Lista che contiene SOLO l'avatar da inviare al DB
+        AvatarList avatarListDatabase = new AvatarList();
         
         // Se il file esiste, leggilo e deserializzalo
         if (File.Exists(filePath))
@@ -78,7 +64,7 @@ public class SaveAvatar : MonoBehaviour
             {
                 avatarList = JsonUtility.FromJson<AvatarList>(existingJson) ?? new AvatarList();
             }
-            //controllo se il file � in sola lettura
+            // controllo se il file e' in sola lettura
             FileInfo fileInfo = new FileInfo(filePath);
             if (fileInfo.IsReadOnly)
             {
@@ -86,23 +72,38 @@ public class SaveAvatar : MonoBehaviour
             }
         }
 
-        //StreamWriter sW = File.CreateText(filePath);
+        // controlla se esiste gia' nel file un id uguale al corrente
+        try
+        {
+            foreach (var avatar in avatarList.avatars)
+            {
+                if (avatar.IdAvatar == setId)
+                {
+                    throw new ExistingIdException();
+                }
+            }
 
-        // Aggiungi il nuovo avatar alla lista
-        avatarList.avatars.Add(new DataModel {IdAvatar = setId, GUID = setGuid, ImagePath = _imageBase64});
-        Debug.Log( "avatarList: "+ avatarList.ToString());
+            // Aggiungi il nuovo avatar alla lista
+            avatarList.avatars.Add(new DataModel { IdAvatar = setId, GUID = setGuid, ImagePath = _imageBase64 });
+            avatarListDatabase.avatars.Add(new DataModel { IdAvatar = setId, GUID = setGuid, ImagePath = _imageBase64 });
 
-        // Serializza il JSON con Newtonsoft.Json (serve quando hai molti caratteri, con JsonUtility troncava)
-        string jsonString = JsonConvert.SerializeObject(avatarList, Formatting.Indented);
+            // Serializza il JSON con Newtonsoft.Json (serve quando hai molti caratteri, con JsonUtility troncava)
+            string jsonString = JsonConvert.SerializeObject(avatarList, Formatting.Indented);
+            string jsonAvatarString = JsonConvert.SerializeObject(avatarListDatabase, Formatting.Indented);
 
-        // Scrivi il JSON nel file
-        File.WriteAllText(filePath, jsonString);
-        //sW.Write(jsonString);
-        
-        Debug.Log($"Nuovo avatar salvato in: {filePath}");
+            // Scrivi il JSON nel file
+            File.WriteAllText(filePath, jsonString);
+            //sW.Write(jsonString);
 
-        // faccio partire la coroutine per salvare json nel DB del server
-        StartCoroutine(UpdateDatabase(jsonString));
+            Debug.Log($"Nuovo avatar salvato in: {filePath}");
+
+            // faccio partire la coroutine per salvare json nel DB del server
+            StartCoroutine(UpdateDatabase(jsonAvatarString));
+        }
+        catch (Exception)
+        {
+            Debug.Log("ERRORE: questo avatar è già stato salvato!!!");
+        }
     }
 
 
@@ -121,11 +122,11 @@ public class SaveAvatar : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Dati inviati con successo! Risposta: " + request.downloadHandler.text);
+                Debug.Log("Dati inviati con successo al DB! Risposta: " + request.downloadHandler.text);
             }
             else
             {
-                Debug.LogError("Errore nell'invio: " + request.error);
+                Debug.LogError("Errore nell'invio al DB: " + request.error);
             }
         }
     }
@@ -171,7 +172,6 @@ public class DataModel
     public string IdAvatar;
     public string GUID;
     public string ImagePath;
-
 }
 
 [System.Serializable]
@@ -180,4 +180,8 @@ public class AvatarList
     public List<DataModel> avatars = new List<DataModel>();
 }
 
+public class ExistingIdException : Exception
+{
+
+}
 
