@@ -14707,6 +14707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonLoadImage
       objectReference: {fileID: 0}
+    - target: {fileID: 821430616490911493, guid: 402e25e63bae8bb4e88b31c6e64ecd4b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1625002736430936839, guid: 402e25e63bae8bb4e88b31c6e64ecd4b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
