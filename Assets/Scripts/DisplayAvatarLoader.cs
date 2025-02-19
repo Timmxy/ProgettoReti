@@ -8,26 +8,35 @@ using UnityEngine.UIElements;
 public class DisplayAvatarLoader : MonoBehaviour
 {
     [SerializeField] private GameObject _button;
+    [SerializeField] private GameObject _canvasAvatarCreator;
+    [SerializeField] private GameObject _canvasAvatarLoader;
     [SerializeField] private Transform _contentTransform;
     [SerializeField] private string url;
 
     public void LoadJson()
     {
+        StartCoroutine(LoadJsonCoroutine());
+    }
+
+    private IEnumerator LoadJsonCoroutine()
+    {
         //nome del file 
         string nomeFile = "playerData.json";
         //percoso generico del file
-        string FilePath = Path.Combine(Application.persistentDataPath, nomeFile);
-
+        string filePath = Path.Combine(Application.persistentDataPath, nomeFile);
         // prendo il json dal database
-        StartCoroutine(GetJsonFromDatabase());
+        yield return StartCoroutine(GetJsonFromDatabase(filePath));
+
+        _canvasAvatarCreator.SetActive(false);
+        _canvasAvatarLoader.SetActive(true);
 
         // verifica se il file esiste
-        if (File.Exists(FilePath))
+        if (File.Exists(filePath))
         {
             try
             {
                 // legge il contenuto del file JSON
-                string jsonString = File.ReadAllText(FilePath);
+                string jsonString = File.ReadAllText(filePath);
 
                 // deserializza il JSON in un array di oggetti DataModel
                 AvatarList data = JsonUtility.FromJson<AvatarList>(jsonString);
@@ -40,14 +49,14 @@ public class DisplayAvatarLoader : MonoBehaviour
                 foreach (DataModel avatarInfo in data.avatars)
                 {
                     // per ciascun avatar, istanzio bottone nel pannello Load 
-                    
+
                     // istanzia il prefab del bottone come figlio del content (scrollview)
                     GameObject temp = Instantiate(_button, _contentTransform);
                     //  carico img
                     temp.GetComponentInChildren<UnityEngine.UI.Image>().sprite = Base64ToSprite(avatarInfo.ImagePath);
                     // associo id
                     temp.GetComponent<LoadAvatar>().SetAvatarId(avatarInfo.IdAvatar);
-                    
+
                     // Opzionale: Reset di posizione, scala e rotazione
                     _button.transform.localPosition = Vector3.zero;
                     _button.transform.localScale = Vector3.one;
@@ -60,13 +69,14 @@ public class DisplayAvatarLoader : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"File JSON non trovato nel percorso: {FilePath}");
+            Debug.LogWarning($"File JSON non trovato nel percorso: {filePath}");
         }
     }
 
-    IEnumerator GetJsonFromDatabase()
+    private IEnumerator GetJsonFromDatabase(string filePath)
     {
-        using (UnityWebRequest request = new UnityWebRequest(url, "GET"))
+        // è possibile specificare l'id chiamando /download_avatars.php?id=xxx
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/download_avatars.php"), "GET"))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
@@ -76,6 +86,21 @@ public class DisplayAvatarLoader : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
                 Debug.Log("Dati inviati con successo! Risposta: " + request.downloadHandler.text);
+                AvatarList avatarList = JsonUtility.FromJson<AvatarList>(request.downloadHandler.text);
+                try
+                {
+                    // Serializza l'oggetto AvatarList in JSON
+                    string jsonString = JsonUtility.ToJson(avatarList, true); // 'true' per formattarlo in modo leggibile
+
+                    // Scrive il JSON nel file
+                    File.WriteAllText(filePath, jsonString);
+
+                    Debug.Log($"File JSON salvato con successo in: {filePath}");
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError($"Errore durante il salvataggio del JSON: {ex.Message}");
+                }
             }
             else
             {
