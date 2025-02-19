@@ -7,11 +7,12 @@ using TMPro;
 using System.Text;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using static Utility;
 
 public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
-    [SerializeField] private string url;
+    [SerializeField] private string _url;
     
     private int _resolutionWidth = 64;
     private int _resolutionHeight = 64;
@@ -110,9 +111,9 @@ public class SaveAvatar : MonoBehaviour
             // faccio partire la coroutine per salvare json nel DB del server
             StartCoroutine(UpdateDatabase(jsonAvatarString));
         }
-        catch (Exception)
+        catch (ExistingIdException ex)
         {
-            Debug.Log("ERRORE: questo avatar è già stato salvato!!!");
+            Debug.LogException(ex);
         }
     }
 
@@ -123,7 +124,7 @@ public class SaveAvatar : MonoBehaviour
         yield return null;
         byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
 
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/insert_avatars.php"), "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(_url, "/insert_avatars.php"), "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -146,7 +147,7 @@ public class SaveAvatar : MonoBehaviour
     {
         byte[] jsonToSend = Encoding.UTF8.GetBytes(_imageBase64);
 
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/upload_image.php"), "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(_url, "/upload_image.php"), "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -199,30 +200,3 @@ public class SaveAvatar : MonoBehaviour
         yield return null;
     }
 } 
-
-
-
-[System.Serializable]
-public class DataModel
-{
-    public string IdAvatar;
-    public string GUID;
-    public string ImagePath;
-}
-
-[System.Serializable]
-public class AvatarList
-{
-    public List<DataModel> avatars = new List<DataModel>();
-}
-
-[System.Serializable]
-public class ImageJson
-{
-    public string ImageBase64;
-}
-
-public class ExistingIdException : Exception
-{
-
-}

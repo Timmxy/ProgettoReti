@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
+using static Utility;
 
 public class DisplayAvatarLoader : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class DisplayAvatarLoader : MonoBehaviour
     [SerializeField] private GameObject _canvasAvatarCreator;
     [SerializeField] private GameObject _canvasAvatarLoader;
     [SerializeField] private Transform _contentTransform;
-    [SerializeField] private string url;
+    [SerializeField] private string _url;
 
     public void LoadJson()
     {
@@ -76,7 +77,7 @@ public class DisplayAvatarLoader : MonoBehaviour
     private IEnumerator GetJsonFromDatabase(string filePath)
     {
         // è possibile specificare l'id chiamando /download_avatars.php?id=xxx
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(url, "/download_avatars.php"), "GET"))
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(_url, "/download_avatars.php"), "GET"))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
