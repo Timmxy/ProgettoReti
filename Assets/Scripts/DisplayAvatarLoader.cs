@@ -8,30 +8,36 @@ using static Utility;
 
 public class DisplayAvatarLoader : MonoBehaviour
 {
-    [SerializeField] private GameObject _button;
-    [SerializeField] private GameObject _canvasAvatarCreator;
-    [SerializeField] private GameObject _canvasAvatarLoader;
-    [SerializeField] private Transform _contentTransform;
-    [SerializeField] private string _url;
+    [SerializeField] private GameObject _button;                // bottone collegato alla logica di questo script (ButtonLoadAvatar)
+    [SerializeField] private GameObject _canvasAvatarCreator;   // canvas con creatore avatar (spegnere alla pressione del tasto)
+    [SerializeField] private GameObject _canvasAvatarLoader;    // canvas con avatar salvati da caricare (accendere alla pressione del bottone)
+    [SerializeField] private Transform _contentTransform;       // padre sotto cui istanziare i bottoni avatar salvati
 
+    [SerializeField] private string _url;   // url per connettersi al server con DB
+
+
+
+    // fa partire la coroutine LoadJsonCoroutine()
     public void LoadJson()
     {
         StartCoroutine(LoadJsonCoroutine());
     }
 
+    // deserializza il json con gli avatar salvati e lo salva in locale, creando GUI per selezionare quale avatar caricare
     private IEnumerator LoadJsonCoroutine()
     {
-        //nome del file 
+        // nome del file da salvare in locale
         string nomeFile = "playerData.json";
-        //percoso generico del file
+        // percoso generico del file
         string filePath = Path.Combine(Application.persistentDataPath, nomeFile);
-        // prendo il json dal database
+        // prende il json dal database
         yield return StartCoroutine(GetJsonFromDatabase(filePath));
 
+        // accende e spegne le relative canvas
         _canvasAvatarCreator.SetActive(false);
         _canvasAvatarLoader.SetActive(true);
 
-        // verifica se il file esiste
+        // verifica se il file esiste gia' in locale
         if (File.Exists(filePath))
         {
             try
@@ -58,7 +64,7 @@ public class DisplayAvatarLoader : MonoBehaviour
                     // associo id
                     temp.GetComponent<LoadAvatar>().SetAvatarId(avatarInfo.IdAvatar);
 
-                    // Opzionale: Reset di posizione, scala e rotazione
+                    // opzionale: reset di posizione, scala e rotazione
                     _button.transform.localPosition = Vector3.zero;
                     _button.transform.localScale = Vector3.one;
                 }
@@ -74,8 +80,10 @@ public class DisplayAvatarLoader : MonoBehaviour
         }
     }
 
+    // coroutine per ricavare il json dal DB
     private IEnumerator GetJsonFromDatabase(string filePath)
     {
+        // web request "GET" per richiedere dati dalla tabella del DB
         // è possibile specificare l'id chiamando /download_avatars.php?id=xxx
         using (UnityWebRequest request = new UnityWebRequest(String.Concat(_url, "/download_avatars.php"), "GET"))
         {
@@ -86,14 +94,14 @@ public class DisplayAvatarLoader : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Dati inviati con successo! Risposta: " + request.downloadHandler.text);
+                Debug.Log("Dati ricevuti con successo! Risposta: " + request.downloadHandler.text);
                 AvatarList avatarList = JsonUtility.FromJson<AvatarList>(request.downloadHandler.text);
                 try
                 {
-                    // Serializza l'oggetto AvatarList in JSON
+                    // serializza l'oggetto AvatarList in JSON
                     string jsonString = JsonUtility.ToJson(avatarList, true); // 'true' per formattarlo in modo leggibile
 
-                    // Scrive il JSON nel file
+                    // scrive il JSON nel file
                     File.WriteAllText(filePath, jsonString);
 
                     Debug.Log($"File JSON salvato con successo in: {filePath}");
@@ -110,6 +118,7 @@ public class DisplayAvatarLoader : MonoBehaviour
         }
     }
 
+    // converte un array di byte in Sprite
     private Sprite Base64ToSprite(string base64)
     {
         byte[] imageBytes = Convert.FromBase64String(base64);
@@ -117,6 +126,7 @@ public class DisplayAvatarLoader : MonoBehaviour
         return texture.LoadImage(imageBytes) ? TextureToSprite(texture) : null;
     }
 
+    // converte una Texture2D in una Sprite
     private Sprite TextureToSprite(Texture2D texture)
     {
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
