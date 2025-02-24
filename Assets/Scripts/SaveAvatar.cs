@@ -14,10 +14,10 @@ public class SaveAvatar : MonoBehaviour
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
     [SerializeField] private string _url;
     
-    private int _resolutionWidth = 64;
-    private int _resolutionHeight = 64;
-    private string _imageBase64;
-    private string _imagePath;
+    private int _resolutionWidth = 64; // risoluzione dell'immagine larghezza
+    private int _resolutionHeight = 64; // risoluzione dell'immagine altezza
+    private string _imageBase64; //campo contenente l'immagine convertita da byte a string
+    private string _imagePath; // path dell'imagine preview dell'avatar
     private bool _waitUploadImage;
 
     
@@ -27,7 +27,7 @@ public class SaveAvatar : MonoBehaviour
         TakeScreenshot();
 
         Avatar avatarComponent = avatar.GetComponent<Avatar>();
-        // genera stringa riconoscitiva dell'avatar
+        // genera stringa riconoscitiva dell'avatar, id composto dall'unione dell'id dei vari componenti dell'avatar
         string id = avatarComponent.GetGenderId() + 
                     avatarComponent.GetHeadId() +
                     avatarComponent.GetBodyId() +
