@@ -45,7 +45,7 @@ public class LoadAvatar : MonoBehaviour
                 _avatar.SetBody(GetCorrectPrefab("Assets/Prefabs/Body", subCategory));
                 break;
             case "04":
-                _avatar.SetLegs(GetCorrectPrefab("Assets/Prefabs/Legs", subCategory));
+                //_avatar.SetLegs(GetCorrectPrefab("Assets/Prefabs/Legs", subCategory));
                 break;
             case "05":
                 _avatar.SetSkinMaterial(GetCorrectPrefab("Assets/Prefabs/Skin", subCategory));

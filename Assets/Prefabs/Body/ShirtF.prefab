@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7294487715411530308}
   - component: {fileID: 638549066478001042}
   - component: {fileID: 2007684921591044033}
-  - component: {fileID: 3009477154820304768}
   m_Layer: 0
   m_Name: ShirtF
   m_TagString: Untagged
@@ -110,20 +109,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3009477154820304768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101041401788362894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a4d97a9c04b084d8709146e50fd8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _headerId: 3
-  _trailerId: 04
 --- !u!1 &3541242817377303945
 GameObject:
   m_ObjectHideFlags: 0

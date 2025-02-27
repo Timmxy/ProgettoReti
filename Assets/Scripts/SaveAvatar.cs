@@ -31,7 +31,7 @@ public class SaveAvatar : MonoBehaviour
         string id = avatarComponent.GetGenderId() + 
                     avatarComponent.GetHeadId() +
                     avatarComponent.GetBodyId() +
-                    avatarComponent.GetLegsId() +
+                    //avatarComponent.GetLegsId() +
                     avatarComponent.GetSkinId();
 
         // aggiungere System.GUID all'ID

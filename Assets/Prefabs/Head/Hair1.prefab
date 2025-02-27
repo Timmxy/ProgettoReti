@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6194874338012976364}
   - component: {fileID: 114781216084183714}
   - component: {fileID: 8833618488924422076}
-  - component: {fileID: -3485660505031756592}
   m_Layer: 0
   m_Name: Hair1
   m_TagString: Untagged
@@ -109,17 +108,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3485660505031756592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831885933155769797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a4d97a9c04b084d8709146e50fd8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _headerId: 2
-  _trailerId: 02

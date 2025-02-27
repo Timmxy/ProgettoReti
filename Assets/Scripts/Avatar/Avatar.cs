@@ -7,24 +7,24 @@ public class Avatar : MonoBehaviour
     [SerializeField] private string _gender;
     [SerializeField] private GameObject _head;
     [SerializeField] private GameObject _body;
-    [SerializeField] private GameObject _legs;
+    //[SerializeField] private GameObject _legs;
     [SerializeField] private GameObject _skin;
     
-    [SerializeField] private MeshRenderer[] _bodyPartsMesh;
+    [SerializeField] private SkinnedMeshRenderer[] _bodyPartsMesh;
 
     [SerializeField] private GameObject _instantiateParent;
     
     [Header("Default Man Preset")]
     [SerializeField] private GameObject _defaultHeadM;
     [SerializeField] private GameObject _defaultBodyM;
-    [SerializeField] private GameObject _defaultLegsM;
+    //[SerializeField] private GameObject _defaultLegsM;
     [SerializeField] private GameObject _defaultSkinMaterialM;
     
     
     [Header("Default Woman Preset")]
     [SerializeField] private GameObject _defaultHeadW;
     [SerializeField] private GameObject _defaultBodyW;
-    [SerializeField] private GameObject _defaultLegsW;
+    //[SerializeField] private GameObject _defaultLegsW;
     [SerializeField] private GameObject _defaultSkinMaterialW;
 
     private void Start()
@@ -40,14 +40,14 @@ public class Avatar : MonoBehaviour
         {
             SetHead(_defaultHeadM);
             SetBody(_defaultBodyM);
-            SetLegs(_defaultLegsM);
+            //SetLegs(_defaultLegsM);
             SetSkinMaterial(_defaultSkinMaterialM);
         }
         else if (_gender.Equals("02"))
         {
             SetHead(_defaultHeadW);
             SetBody(_defaultBodyW);
-            SetLegs(_defaultLegsW);
+            //SetLegs(_defaultLegsW);
             SetSkinMaterial(_defaultSkinMaterialW);
         }
     }
@@ -69,17 +69,19 @@ public class Avatar : MonoBehaviour
         _body = Instantiate(body, gameObject.transform);
     }
     
+    /*
     public void SetLegs (GameObject legs)
     {
         Destroy(_legs);
         _legs = Instantiate(legs, gameObject.transform);
     }
+    */
 
     public void SetSkinMaterial (GameObject skin)
     {
         Destroy(_skin);
         this._skin = Instantiate(skin, this._instantiateParent.transform);
-        foreach (MeshRenderer bodyPartMesh in _bodyPartsMesh)
+        foreach (SkinnedMeshRenderer bodyPartMesh in _bodyPartsMesh)
         {
             bodyPartMesh.material = _skin.GetComponent<MeshRenderer>().material;
         }
@@ -101,10 +103,12 @@ public class Avatar : MonoBehaviour
         return this._body.GetComponent<PrefabTag>().GetId();
     }
 
+    /*
     public string GetLegsId()
     {
         return this._legs.GetComponent<PrefabTag>().GetId();
     }
+    */
 
     public string GetSkinId()
     {

@@ -120,7 +120,6 @@ GameObject:
   - component: {fileID: 5277662168092286809}
   - component: {fileID: 5660173798417338093}
   - component: {fileID: 1480196239898812732}
-  - component: {fileID: -6679220386441935279}
   m_Layer: 0
   m_Name: JacketM
   m_TagString: Untagged
@@ -218,17 +217,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6679220386441935279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5857809934481476080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a4d97a9c04b084d8709146e50fd8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _headerId: 3
-  _trailerId: 05
