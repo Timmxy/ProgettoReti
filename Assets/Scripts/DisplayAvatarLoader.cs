@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static Utility;
 
@@ -13,6 +14,7 @@ public class DisplayAvatarLoader : MonoBehaviour
     [SerializeField] private GameObject _canvasAvatarLoader;    // canvas con avatar salvati da caricare (accendere alla pressione del bottone)
     [SerializeField] private Transform _contentTransform;       // padre sotto cui istanziare i bottoni avatar salvati
 
+    [SerializeField] private InputField _inputFieldUrl; // inputfield in cui utente inserisce IP del server, trasformato poi in URL
     [SerializeField] private string _url;   // url per connettersi al server con DB
 
 
@@ -83,9 +85,10 @@ public class DisplayAvatarLoader : MonoBehaviour
     // coroutine per ricavare il json dal DB
     private IEnumerator GetJsonFromDatabase(string filePath)
     {
+        string tmp = String.Concat("http://", this._inputFieldUrl.text);
         // web request "GET" per richiedere dati dalla tabella del DB
         // è possibile specificare l'id chiamando /download_avatars.php?id=xxx
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(_url, "/download_avatars.php"), "GET"))
+        using (UnityWebRequest request = new UnityWebRequest(String.Concat(tmp, "/download_avatars.php"), "GET"))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
