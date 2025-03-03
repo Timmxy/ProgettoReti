@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ public class DisplayAvatarLoader : MonoBehaviour
     [SerializeField] private GameObject _canvasAvatarLoader;    // canvas con avatar salvati da caricare (accendere alla pressione del bottone)
     [SerializeField] private Transform _contentTransform;       // padre sotto cui istanziare i bottoni avatar salvati
 
-    [SerializeField] private InputField _inputFieldUrl; // inputfield in cui utente inserisce IP del server, trasformato poi in URL
+    [SerializeField] private TMP_InputField _inputFieldUrl; // inputfield in cui utente inserisce IP del server, trasformato poi in URL
     [SerializeField] private string _url;   // url per connettersi al server con DB
 
 

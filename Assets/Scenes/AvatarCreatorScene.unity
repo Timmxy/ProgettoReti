@@ -740,7 +740,7 @@ MonoBehaviour:
   _canvasAvatarCreator: {fileID: 2142492900}
   _canvasAvatarLoader: {fileID: 340349871}
   _contentTransform: {fileID: 301639544}
-  _inputFieldUrl: {fileID: 0}
+  _inputFieldUrl: {fileID: 1703941318}
   _url: 
 --- !u!1 &179195499
 GameObject:
@@ -7317,7 +7317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _screenShotCamera: {fileID: 1722979040}
-  _inputFieldUrl: {fileID: 0}
+  _inputFieldUrl: {fileID: 1703941318}
 --- !u!1 &1120949380
 GameObject:
   m_ObjectHideFlags: 0
@@ -7402,8 +7402,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8434,8 +8434,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11112,7 +11112,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 40
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:

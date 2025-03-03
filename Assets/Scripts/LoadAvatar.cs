@@ -15,12 +15,13 @@ public class LoadAvatar : MonoBehaviour
 
     public void LoadAvatarSettings()
     {
+        Debug.Log(_avatarId);
         // suddivide id in parti uguali (4 per ogni categoria) e applico cambiamenti per ciascuna categoria
         ApplyChangesToAvatar(_avatarId.Substring(0, 4));
         ApplyChangesToAvatar(_avatarId.Substring(4, 4));
         ApplyChangesToAvatar(_avatarId.Substring(8, 4));
         ApplyChangesToAvatar(_avatarId.Substring(12, 4));
-        ApplyChangesToAvatar(_avatarId.Substring(16, 4));
+        //ApplyChangesToAvatar(_avatarId.Substring(16, 4));
 
         Debug.Log("Avatar caricato correttamente!");
     }
@@ -44,9 +45,9 @@ public class LoadAvatar : MonoBehaviour
             case "03":
                 _avatar.SetBody(GetCorrectPrefab("Assets/Prefabs/Body", subCategory));
                 break;
-            case "04":
+            //case "04":
                 //_avatar.SetLegs(GetCorrectPrefab("Assets/Prefabs/Legs", subCategory));
-                break;
+              //  break;
             case "05":
                 _avatar.SetSkinMaterial(GetCorrectPrefab("Assets/Prefabs/Skin", subCategory));
                 break;

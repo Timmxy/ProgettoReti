@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
-    [SerializeField] private InputField _inputFieldUrl; // inputfield in cui utente inserisce IP del server, trasformato poi in URL
+    [SerializeField] private TMP_InputField _inputFieldUrl; // inputfield in cui utente inserisce IP del server, trasformato poi in URL
     
     private int _resolutionWidth = 64; // risoluzione dell'immagine larghezza
     private int _resolutionHeight = 64; // risoluzione dell'immagine altezza
@@ -35,6 +35,7 @@ public class SaveAvatar : MonoBehaviour
                     //avatarComponent.GetLegsId() +
                     avatarComponent.GetSkinId();
 
+        Debug.Log(id);
         // aggiungere System.GUID all'ID
         string guid = Guid.NewGuid().ToString();
 
