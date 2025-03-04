@@ -86,7 +86,7 @@ public class DisplayAvatarLoader : MonoBehaviour
     // coroutine per ricavare il json dal DB
     private IEnumerator GetJsonFromDatabase(string filePath)
     {
-        string tmp = String.Concat("http://", this._inputFieldUrl.text);
+        string tmp = String.Concat("https://", this._inputFieldUrl.text);
         // web request "GET" per richiedere dati dalla tabella del DB
         // è possibile specificare l'id chiamando /download_avatars.php?id=xxx
         using (UnityWebRequest request = new UnityWebRequest(String.Concat(tmp, "/download_avatars.php"), "GET"))

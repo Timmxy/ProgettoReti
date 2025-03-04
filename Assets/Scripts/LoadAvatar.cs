@@ -40,16 +40,16 @@ public class LoadAvatar : MonoBehaviour
                 break;
             case "02":
                 // assegno il prefab trovato alla sezione giusta dell'avatar
-                _avatar.SetHead(GetCorrectPrefab("Assets/Prefabs/Head", subCategory));
+                _avatar.SetHead(GetCorrectPrefab("Prefabs/Head", subCategory));
                 break;
             case "03":
-                _avatar.SetBody(GetCorrectPrefab("Assets/Prefabs/Body", subCategory));
+                _avatar.SetBody(GetCorrectPrefab("Prefabs/Body", subCategory));
                 break;
             //case "04":
                 //_avatar.SetLegs(GetCorrectPrefab("Assets/Prefabs/Legs", subCategory));
               //  break;
             case "05":
-                _avatar.SetSkinMaterial(GetCorrectPrefab("Assets/Prefabs/Skin", subCategory));
+                _avatar.SetSkinMaterial(GetCorrectPrefab("Prefabs/Skin", subCategory));
                 break;
         }
     }
@@ -57,15 +57,13 @@ public class LoadAvatar : MonoBehaviour
     // dentro alla cartella passata cerca un prefab con id corrispondente e lo ritorna 
     private GameObject GetCorrectPrefab(string folderPath, string subCategory)
     {
-        string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] { folderPath });
+        GameObject[] objectsArray = Resources.LoadAll<GameObject>(folderPath);
 
-        foreach (string guid in guids)
+        foreach (GameObject prefab in objectsArray)
         {
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
             if (prefab.GetComponent<PrefabTag>().GetTrailerId() == subCategory)
             {
-                Debug.Log($"Trovato Prefab: {prefab.name} in {assetPath}");
+                Debug.Log($"Trovato Prefab: {prefab.name}");
                 return prefab;
             }
         }
