@@ -7183,6 +7183,7 @@ GameObject:
   - component: {fileID: 1017407007}
   - component: {fileID: 1017407006}
   - component: {fileID: 1017407009}
+  - component: {fileID: 1017407010}
   m_Layer: 5
   m_Name: ButtonSaveAvatar
   m_TagString: Untagged
@@ -7254,8 +7255,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017407009}
-        m_TargetAssemblyTypeName: SaveAvatar, Assembly-CSharp
+      - m_Target: {fileID: 1017407010}
+        m_TargetAssemblyTypeName: SaveAvatarRPM, Assembly-CSharp
         m_MethodName: GenerateStringId
         m_Mode: 2
         m_Arguments:
@@ -7318,6 +7319,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _screenShotCamera: {fileID: 1722979040}
   _inputFieldUrl: {fileID: 1703941318}
+--- !u!114 &1017407010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017407004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956c5ba6c69e31447b0a864e8a5e9a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputFieldUrl: {fileID: 1703941318}
+  _idMuseo: Prova
+  _idTotem: 2
+  _urlGlb: https://models.readyplayer.me/67c818120a92236276e9e88e.glb
 --- !u!1 &1120949380
 GameObject:
   m_ObjectHideFlags: 0

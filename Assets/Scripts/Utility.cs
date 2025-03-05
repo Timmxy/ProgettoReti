@@ -31,4 +31,18 @@ public class Utility
         {
         }
     }
+
+    [Serializable]
+    public class AvatarListRPM
+    {
+        public List<DataModelRPM> avatarsRPM = new List<DataModelRPM>();
+    }
+
+    [Serializable]
+    public class DataModelRPM
+    {
+        public string id_museo;
+        public int id_totem;
+        public string url_glb;
+    }
 }
