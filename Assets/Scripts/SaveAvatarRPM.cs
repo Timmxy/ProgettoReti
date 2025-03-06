@@ -16,7 +16,7 @@ public class SaveAvatarRPM : MonoBehaviour
     [SerializeField] private int _idTotem;
     [SerializeField] private string _urlGlb;
 
-    public void GenerateStringId(GameObject avatar)
+    public void SaveJsonRPM()
     {
         string path = Application.persistentDataPath;
         Debug.Log("Path: " + path);
