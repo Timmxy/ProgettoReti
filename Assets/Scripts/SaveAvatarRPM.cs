@@ -11,7 +11,6 @@ using static Utility;
 
 public class SaveAvatarRPM : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField _inputFieldUrl; // InputField per l'IP del server
     [SerializeField] private string _idMuseo;
     [SerializeField] private int _idTotem;
     [SerializeField] private string _urlGlb;
@@ -77,8 +76,8 @@ public class SaveAvatarRPM : MonoBehaviour
         yield return null;
         byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
 
-        string tmp = String.Concat("https://", this._inputFieldUrl.text);
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(tmp, "/insert_avatarsRPM.php"), "POST"))
+        string tmp = "https://avatarcreator.ddns.net/insert_avatarsRPM.php";
+        using (UnityWebRequest request = new UnityWebRequest(tmp, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
             request.downloadHandler = new DownloadHandlerBuffer();

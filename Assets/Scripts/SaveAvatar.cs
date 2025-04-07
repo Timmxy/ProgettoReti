@@ -13,7 +13,6 @@ using UnityEngine.UI;
 public class SaveAvatar : MonoBehaviour
 {
     [SerializeField] private Camera _screenShotCamera;  // telecamera che salva immagine dell'avatar
-    [SerializeField] private TMP_InputField _inputFieldUrl; // inputfield in cui utente inserisce IP del server, trasformato poi in URL
     
     private int _resolutionWidth = 64; // risoluzione dell'immagine larghezza
     private int _resolutionHeight = 64; // risoluzione dell'immagine altezza
@@ -126,8 +125,8 @@ public class SaveAvatar : MonoBehaviour
         yield return null;
         byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
 
-        string tmp = String.Concat("https://", this._inputFieldUrl.text);
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(tmp, "/insert_avatars.php"), "POST"))
+        string tmp = "https://avatarcreator.ddns.net/insert_avatars.php";
+        using (UnityWebRequest request = new UnityWebRequest(tmp, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -150,8 +149,8 @@ public class SaveAvatar : MonoBehaviour
     {
         byte[] jsonToSend = Encoding.UTF8.GetBytes(_imageBase64);
 
-        string tmp = String.Concat("https://", this._inputFieldUrl.text);
-        using (UnityWebRequest request = new UnityWebRequest(String.Concat(tmp, "/upload_image.php"), "POST"))
+        string tmp = "https://avatarcreator.ddns.net/upload_image.php";
+        using (UnityWebRequest request = new UnityWebRequest(tmp, "POST"))
         {
             Debug.Log(String.Concat(tmp, "/upload_image.php"));
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);

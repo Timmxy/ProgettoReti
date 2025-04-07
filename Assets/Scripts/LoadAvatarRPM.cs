@@ -10,7 +10,6 @@ using static Utility;
 
 public class LoadAvatarRPM : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField _inputFieldUrl;
     [SerializeField] private string _idMuseo;
     [SerializeField] private int _idTotem;
 
@@ -30,7 +29,7 @@ public class LoadAvatarRPM : MonoBehaviour
     private IEnumerator FetchAvatarsFromDatabase(string idMuseo, int? idTotem)
     {
         // Costruisci l'URL base
-        string baseUrl = String.Concat("https://", _inputFieldUrl.text, "/download_avatarsRPM.php");
+        string baseUrl = "https://avatarcreator.ddns.net/download_avatarsRPM.php";
 
         // Aggiungi i parametri di filtro se presenti
         StringBuilder urlBuilder = new StringBuilder(baseUrl);
