@@ -125,7 +125,7 @@ public class SaveAvatar : MonoBehaviour
         yield return null;
         byte[] jsonToSend = Encoding.UTF8.GetBytes(jsonData);
 
-        string tmp = "https://avatarcreator.ddns.net/insert_avatars.php";
+        string tmp = "http://localhost:8080/insert_avatars.php";
         using (UnityWebRequest request = new UnityWebRequest(tmp, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(jsonToSend);
@@ -149,7 +149,7 @@ public class SaveAvatar : MonoBehaviour
     {
         byte[] jsonToSend = Encoding.UTF8.GetBytes(_imageBase64);
 
-        string tmp = "https://avatarcreator.ddns.net/upload_image.php";
+        string tmp = "http://localhost:8080/upload_image.php";
         using (UnityWebRequest request = new UnityWebRequest(tmp, "POST"))
         {
             Debug.Log(String.Concat(tmp, "/upload_image.php"));
